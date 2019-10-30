@@ -1,7 +1,8 @@
 const JiraClient = require("jira-connector");
-const jsonfile = require('jsonfile')
+const jsonfile = require('jsonfile');
+const path = require('path');
 
-const file = './config/account.json'
+const file =  path.resolve(__dirname,'../config/account.json');
 
 exports.getClient = async () => {
     let accountFile = await jsonfile.readFile(file);
