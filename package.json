@@ -17,12 +17,12 @@
     "type": "git",
     "url": "git+https://github.com/caoyangyang/jira-tool.git"
   },
-  "author": "",
+  "author": "yycao",
   "license": "ISC",
   "dependencies": {
     "cac": "^6.5.2",
     "jira-connector": "^2.16.1",
-    "jsonfile": "^5.0.0",
+    "jsonfile": "^5.0.0"
   },
   "devDependencies": {
     "husky": "^3.0.5",
