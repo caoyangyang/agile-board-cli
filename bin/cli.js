@@ -1,19 +1,20 @@
 #!/usr/bin/env node
 const cli = require('cac')();
-const releaseOperation = require("../feature/release.js") ;
+const projectOperation = require("../feature/project.js") ;
 const configOperation = require("../feature/config.js") ;
 
 cli
-    .command('release <operate>', 'Operate for release')
-    .action(operate => {
-        releaseOperation[operate]()
+    .command('project <operate> [...otherArgs]', 'Operate for project')
+    .action((operate,otherArgs) => {
+        projectOperation[operate](...otherArgs)
     });
 cli
     .command('config', 'Build files')
+    .option('-url <url>', 'url')
     .option('-u <userName>', 'user')
     .option('-p <password>', 'password')
     .action((options) => {
-        configOperation.init(options.u,options.p)
+        configOperation.init(options.url,options.u,options.p)
     })
 
 cli

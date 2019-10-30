@@ -7,7 +7,7 @@ const file =  path.resolve(__dirname,'../config/account.json');
 exports.getClient = async () => {
     let accountFile = await jsonfile.readFile(file);
     return new JiraClient({
-        host: 'costa-digital.atlassian.net',
+        host: accountFile.url,
         strictSSL: true,
         basic_auth: {
             username: accountFile.userName,
