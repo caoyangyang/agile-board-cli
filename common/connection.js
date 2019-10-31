@@ -1,17 +1,25 @@
 const JiraClient = require("jira-connector");
 const jsonfile = require('jsonfile');
+const fetch = require("node-fetch");
 const path = require('path');
 
 const file =  path.resolve(__dirname,'../config/account.json');
 
-exports.getClient = async () => {
+getHeader=async()=>{
     let accountFile = await jsonfile.readFile(file);
-    return new JiraClient({
-        host: accountFile.url,
-        strictSSL: true,
-        basic_auth: {
-            username: accountFile.userName,
-            password: accountFile.password
-        }
-    })
+    return {'Authorization':'Basic ' +  Buffer.from(accountFile.userName+":"+ accountFile.password).toString('base64')};
+}
+
+exports.get = async (url) => {
+    let accountFile = await jsonfile.readFile(file);
+    const headers=  await getHeader();
+    return fetch("https://"+accountFile.url+"/rest/api/2/"+url, {method:'GET', headers}).then(res => res.json())
 };
+
+exports.post = async (url,data) => {
+    let accountFile = await jsonfile.readFile(file);
+    const headers=  await getHeader();
+    return fetch("https://"+accountFile.url+"/rest/api/2/"+url, {method:'POST', headers,data}).then(res => res.json())
+};
+
+
