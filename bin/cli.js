@@ -2,7 +2,7 @@
 const cli = require('cac')();
 const projectOperation = require("../feature/project.js") ;
 const releaseOperation = require("../feature/release.js") ;
-const configOperation = require("../feature/config.js") ;
+const loginOperation = require("../feature/login.js") ;
 
 cli
     .command('project <operate> [...otherArgs]', 'Operate for project')
@@ -17,12 +17,12 @@ cli
     });
 
 cli
-    .command('config', 'Build files')
+    .command('login', 'Build files')
     .option('-url <url>', 'url')
     .option('-u <userName>', 'user')
     .option('-p <password>', 'password')
     .action((options) => {
-        configOperation.init(options.url,options.u,options.p)
+        loginOperation.init(options.url,options.u,options.p)
     })
 
 cli

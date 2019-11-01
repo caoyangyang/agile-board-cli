@@ -3,23 +3,32 @@ const jsonfile = require('jsonfile');
 const fetch = require("node-fetch");
 const path = require('path');
 
-const file =  path.resolve(__dirname,'../config/account.json');
+const file = path.resolve(__dirname, '../config/account.json');
 
-getHeader=async()=>{
+getHeader = async () => {
     let accountFile = await jsonfile.readFile(file);
-    return {'Authorization':'Basic ' +  Buffer.from(accountFile.userName+":"+ accountFile.password).toString('base64')};
+    return {
+        'Authorization': 'Basic ' + Buffer.from(accountFile.userName + ":" + accountFile.password).toString('base64'),
+        'Content-Type': "application/json"
+    };
 }
 
 exports.get = async (url) => {
     let accountFile = await jsonfile.readFile(file);
-    const headers=  await getHeader();
-    return fetch("https://"+accountFile.url+"/rest/api/2/"+url, {method:'GET', headers}).then(res => res.json())
+    const headers = await getHeader();
+    return fetch("https://" + accountFile.url + "/rest/api/2/" + url, {method: 'GET', headers})
+        .then(res => res.json())
 };
 
-exports.post = async (url,data) => {
+exports.post = async (url, data) => {
     let accountFile = await jsonfile.readFile(file);
-    const headers=  await getHeader();
-    return fetch("https://"+accountFile.url+"/rest/api/2/"+url, {method:'POST', headers,data}).then(res => res.json())
+    const headers = await getHeader();
+    return fetch("https://" + accountFile.url + "/rest/api/2/" + url, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
 };
 
 
