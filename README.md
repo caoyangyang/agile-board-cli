@@ -12,7 +12,7 @@ Config
 ```bash
 jira-tool-cli login -u yycao -p passowrd -l www.jira.com
 ```
-###project operation
+### project operation
 Get project list
 
 ```bash
@@ -28,7 +28,7 @@ Get project release list
 jira-tool-cli project showReleases [idOrKey] 
 ```
 
-###release operation
+### release operation
 
 Get release detail
 ```bash
