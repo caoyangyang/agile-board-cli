@@ -18,4 +18,20 @@ exports.history = async (idOrKey) => {
     ));
 }
 
+exports.status= async (idOrKey) => {
+    const res= await connection.get("issue/"+idOrKey);
+    const transitionsRes= await connection.get(`issue/${idOrKey}/transitions`);
+    console.log("current status is "+ res.fields.status.name);
+    console.log("all status as below", transitionsRes.transitions.map(item=>item.id+item.name));
+}
+
+exports.statusTo=async (idOrKey,statusId) => {
+    const transitionsRes= await connection.get(`issue/${idOrKey}/transitions`);
+    const transition = transitionsRes.transitions.find(item=>item.id===statusId)
+    await connection.post(`issue/${idOrKey}/transitions`, {
+        transition: transition
+    });
+}
+
+
 

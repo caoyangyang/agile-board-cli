@@ -28,7 +28,9 @@ exports.post = async (url, data) => {
             headers,
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
+        .then(res => {
+           return  res.status===200?res.json():res
+        })
 };
 
 exports.internalGet = async (url) => {
