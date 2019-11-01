@@ -10,7 +10,7 @@ exports.show = async (idOrKey) => {
     console.log("issue info\n",issue);
 }
 
-exports.history = async (idOrKey) => {
+exports.showHistory = async (idOrKey) => {
     const res= await connection.internalGet(`issue/${idOrKey}/activityfeed?startAt=0`);
 
     console.log("issue history\n",res.items.map(item=>
@@ -18,7 +18,7 @@ exports.history = async (idOrKey) => {
     ));
 }
 
-exports.status= async (idOrKey) => {
+exports.showStatus= async (idOrKey) => {
     const res= await connection.get("issue/"+idOrKey);
     const transitionsRes= await connection.get(`issue/${idOrKey}/transitions`);
     console.log("current status is "+ res.fields.status.name);

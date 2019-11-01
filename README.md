@@ -10,15 +10,56 @@ npm install jira-tool-cli -g
 
 Config
 ```bash
-jira-tool-cli config -u USERNAME -p API_TOKEN
+jira-tool-cli login -u yycao -p passowrd -l www.jira.com
 ```
-
-Get release list
+###project operation
+Get project list
 
 ```bash
-jira-tool-cli release ls
+jira-tool-cli project ls
 ```
 
+Get project detail
+```bash
+jira-tool-cli project show [idOrKey] 
+```
+Get project release list
+```bash
+jira-tool-cli project showReleases [idOrKey] 
+```
+
+###release operation
+
+Get release detail
+```bash
+jira-tool-cli release show [id] 
+```
+
+Get release related issues
+```bash
+jira-tool-cli release showIssues [id] 
+```
+
+### issue operation
+Get issue detail
+```bash
+jira-tool-cli issue show [id] 
+```
+
+Get issue work history
+```bash
+jira-tool-cli issue showHistory [id] 
+```
+
+Get issue current status and status list with status id
+```bash
+jira-tool-cli issue showStatus [id] 
+```
+
+Move issue status to another statue
+```bash
+jira-tool-cli issue statusTo [id] [statusId]
+```
 
 ## Author
 

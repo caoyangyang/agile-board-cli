@@ -25,11 +25,11 @@ cli
 
 cli
     .command('login', 'Build files')
-    .option('-url <url>', 'url')
     .option('-u <userName>', 'user')
     .option('-p <password>', 'password')
+    .option('-l <link>', 'url')
     .action((options) => {
-        loginOperation.init(options.url,options.u,options.p)
+        loginOperation.init(options.l,options.u,options.p)
     })
 
 cli.help()

@@ -14,7 +14,7 @@ exports.show = async (id) => {
     console.log("project info \n",project);
 }
 
-exports.releases = async (id) => {
+exports.showReleases = async (id) => {
     const versions= await connection.get(`project/${id}/versions`);
     console.log("project releases info\n",versions.map(version => (`[${version.id}] ${version.name} -${version.description}`)));
 }

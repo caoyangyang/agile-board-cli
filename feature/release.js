@@ -5,7 +5,7 @@ exports.show = async (id) => {
     console.log("releases info\n",version);
 }
 
-exports.issues=async (id) => {
+exports.showIssues=async (id) => {
     const res= await connection.post("search",{
         "jql":`fixVersion=${id}`,
         "startAt": 0,

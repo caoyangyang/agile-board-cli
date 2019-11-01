@@ -1,6 +1,6 @@
 {
   "name": "jira-tool-cli",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "update jira card, release, project detail & status",
   "main": "bin/cli.js",
   "bin": "bin/cli.js",
