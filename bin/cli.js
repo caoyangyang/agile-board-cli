@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const cli = require('cac')();
 const projectOperation = require("../feature/project.js") ;
+const releaseOperation = require("../feature/release.js") ;
 const configOperation = require("../feature/config.js") ;
 
 cli
@@ -8,6 +9,13 @@ cli
     .action((operate,otherArgs) => {
         projectOperation[operate](...otherArgs)
     });
+
+cli
+    .command('release <operate> [...otherArgs]', 'Operate for release')
+    .action((operate,otherArgs) => {
+        releaseOperation[operate](...otherArgs)
+    });
+
 cli
     .command('config', 'Build files')
     .option('-url <url>', 'url')
