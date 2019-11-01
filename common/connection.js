@@ -31,4 +31,11 @@ exports.post = async (url, data) => {
         .then(res => res.json())
 };
 
+exports.internalGet = async (url) => {
+    let accountFile = await jsonfile.readFile(file);
+    const headers = await getHeader();
+    return fetch("https://" + accountFile.url + "/rest/internal/2/" + url, {method: 'GET', headers})
+        .then(res => res.json())
+};
+
 
