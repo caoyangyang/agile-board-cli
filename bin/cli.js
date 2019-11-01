@@ -32,12 +32,6 @@ cli
         loginOperation.init(options.url,options.u,options.p)
     })
 
-cli
-    .command('init <operate>', 'Operate for release')
-    .action(operate => {
-        configOperation[operate]()
-    });
-
 cli.help()
 cli.version('0.0.0')
 
