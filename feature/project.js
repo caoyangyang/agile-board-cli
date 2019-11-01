@@ -3,7 +3,9 @@ const connection = require("../common/connection");
 exports.ls = async () => {
     const allProjects= await connection.get("project")
     console.log(allProjects.map(project=>({
-        id:project.id, name:project.name
+        id:project.id,
+        name:project.name,
+        key:project.key
     })));
 }
 
