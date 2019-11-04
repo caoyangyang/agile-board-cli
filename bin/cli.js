@@ -10,7 +10,7 @@ Object.keys(commandGroup).forEach((commandObject => {
     cli
         .command(`${commandObject} <operate> [...otherArgs]`, 'Operate')
         .action((operate, otherArgs) => {
-            commandGroup[commandObject][operate](...otherArgs)
+            commandGroup[commandObject].run(operate,...otherArgs)
         });
 }))
 

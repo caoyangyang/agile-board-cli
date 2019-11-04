@@ -2,24 +2,9 @@ const config = require("../../config/config.js") ;
 const jiraOperation = require(`../jira/issue.js`);
 
 
-exports.show = async (idOrKey) => {
+exports.run = async (operate, ...args) => {
     const operationObject = await getOperationObject();
-    operationObject.show(idOrKey)
-}
-
-exports.showHistory = async (idOrKey) => {
-    const operationObject = await getOperationObject();
-    operationObject.showHistory(idOrKey)
-}
-
-exports.showStatus = async (idOrKey) => {
-    const operationObject = await getOperationObject();
-    operationObject.showStatus(idOrKey)
-}
-
-exports.statusTo = async (idOrKey, statusId) => {
-    const operationObject = await getOperationObject();
-    operationObject.statusTo(idOrKey, statusId)
+    operationObject[operate](...args)
 }
 
 getOperationObject = async () => {
