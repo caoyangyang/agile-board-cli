@@ -1,5 +1,5 @@
 {
-  "name": "agile-cards-tool-cli",
+  "name": "agile-board-cli",
   "version": "1.0.0",
   "description": "update card, release, project detail & status for jira and others",
   "main": "bin/cli.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caoyangyang/jira-tool.git"
+    "url": "git+https://github.com/caoyangyang/agile-board-cli.git"
   },
   "author": "yycao",
   "license": "ISC",

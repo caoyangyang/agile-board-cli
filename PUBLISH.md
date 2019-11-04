@@ -1,4 +1,4 @@
-# jira-tool-cli
+# agile-board-cli
 
 ## how to publish npm
 ### step1 login 
