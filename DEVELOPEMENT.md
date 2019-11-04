@@ -51,3 +51,4 @@
 ### 对不同的系统，扩展feature，实际就是对所有领域对象的操作，在一个新的系统全部实现一遍，但是实现的行为存在差异性
 
 *XMind: ZEN - Trial Version*
+![Image of xmind](https://github.com/caoyangyang/agile-board-cli/blob/master/Agile%20board%20cli%20abc.png)
