@@ -1,6 +1,6 @@
 {
   "name": "agile-board-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "update card, release, project detail & status for jira and others",
   "main": "bin/cli.js",
   "bin": "bin/cli.js",
