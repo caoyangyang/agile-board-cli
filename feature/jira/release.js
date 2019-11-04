@@ -1,4 +1,4 @@
-const connection = require("../../common/connection");
+const connection = require("../../common/jira-connection");
 
 exports.show = async (id) => {
     const version= await connection.get("version/"+id);
