@@ -1,7 +1,7 @@
 {
-  "name": "jira-tool-cli",
-  "version": "1.0.6",
-  "description": "update jira card, release, project detail & status",
+  "name": "agile-cards-tool-cli",
+  "version": "1.0.0",
+  "description": "update card, release, project detail & status for jira and others",
   "main": "bin/cli.js",
   "bin": "bin/cli.js",
   "files": [
