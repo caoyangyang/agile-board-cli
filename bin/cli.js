@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const cli = require('cac')();
-const initOperation = require("../feature/init.js") ;
+const accountOperation = require("../feature/interface/account.js") ;
 const projectOperation = require(`../feature/interface/project.js`) ;
 const releaseOperation = require(`../feature/interface/release.js`) ;
 const issueOperation = require(`../feature/interface/issue.js`) ;
@@ -17,7 +17,7 @@ Object.keys(commandGroup).forEach((commandObject => {
 cli
     .command('init', 'Build files')
     .action(() => {
-        initOperation.init()
+        accountOperation.run()
     })
 
 cli.help()
