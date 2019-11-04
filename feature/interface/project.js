@@ -2,11 +2,11 @@ const config = require("../../config/config.js") ;
 const jiraOperation = require(`../jira/project.js`);
 
 exports.run=async(operate, ...args)=>{
-    const operationObject = await getOperationObject();
+    const operationObject = await getProjectOperationObject();
     operationObject[operate](...args)
 }
 
-getOperationObject = async () => {
+getProjectOperationObject = async () => {
     const boardType = await config.getType();
     switch (boardType) {
         case "jira":
