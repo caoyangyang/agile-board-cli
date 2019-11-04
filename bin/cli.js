@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const cli = require('cac')();
+const gitLog = require("../common/git-log.js") ;
 const accountOperation = require("../feature/interface/account.js") ;
 const projectOperation = require(`../feature/interface/project.js`) ;
 const releaseOperation = require(`../feature/interface/release.js`) ;
@@ -18,6 +19,13 @@ cli
     .command('init', 'Build files')
     .action(() => {
         accountOperation.run()
+    })
+
+
+cli
+    .command('lastCommit', 'show last git commit message')
+    .action(() => {
+        gitLog.showLatestLog()
     })
 
 cli.help()
