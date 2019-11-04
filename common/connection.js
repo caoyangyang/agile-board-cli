@@ -1,4 +1,3 @@
-const JiraClient = require("jira-connector");
 const jsonfile = require('jsonfile');
 const fetch = require("node-fetch");
 const path = require('path');

@@ -1,38 +1,25 @@
 #!/usr/bin/env node
 const cli = require('cac')();
-const projectOperation = require("../feature/project.js") ;
-const releaseOperation = require("../feature/release.js") ;
-const issueOperation = require("../feature/issue.js") ;
-const loginOperation = require("../feature/login.js") ;
+const initOperation = require("../feature/init.js") ;
+const projectOperation = require(`../feature/interface/project.js`) ;
+const releaseOperation = require(`../feature/interface/release.js`) ;
+const issueOperation = require(`../feature/interface/issue.js`) ;
+const commandGroup= {project:projectOperation,release:releaseOperation,issue:issueOperation}
+
+Object.keys(commandGroup).forEach((commandObject => {
+    cli
+        .command(`${commandObject} <operate> [...otherArgs]`, 'Operate')
+        .action((operate, otherArgs) => {
+            commandGroup[commandObject][operate](...otherArgs)
+        });
+}))
 
 cli
-    .command('project <operate> [...otherArgs]', 'Operate for project')
-    .action((operate,otherArgs) => {
-        projectOperation[operate](...otherArgs)
-    });
-
-cli
-    .command('release <operate> [...otherArgs]', 'Operate for release')
-    .action((operate,otherArgs) => {
-        releaseOperation[operate](...otherArgs)
-    });
-
-cli
-    .command('issue <operate> [...otherArgs]', 'Operate for issue')
-    .action((operate,otherArgs) => {
-        issueOperation[operate](...otherArgs)
-    });
-
-cli
-    .command('login', 'Build files')
-    .option('-u <userName>', 'user')
-    .option('-p <password>', 'password')
-    .option('-l <link>', 'url')
-    .action((options) => {
-        loginOperation.init(options.l,options.u,options.p)
+    .command('init', 'Build files')
+    .action(() => {
+        initOperation.init()
     })
 
 cli.help()
 cli.version('0.0.0')
-
 cli.parse();

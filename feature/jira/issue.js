@@ -1,4 +1,4 @@
-const connection = require("../common/connection");
+const connection = require("../../common/connection");
 
 exports.show = async (idOrKey) => {
     const res= await connection.get("issue/"+idOrKey);

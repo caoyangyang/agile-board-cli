@@ -10,7 +10,7 @@ npm install jira-tool-cli -g
 
 Config
 ```bash
-jira-tool-cli login -u yycao -p passowrd -l www.jira.com
+jira-tool-cli init
 ```
 ### project operation
 Get project list

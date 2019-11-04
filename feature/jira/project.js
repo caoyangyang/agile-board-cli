@@ -1,4 +1,4 @@
-const connection = require("../common/connection");
+const connection = require("../../common/connection");
 
 exports.ls = async () => {
     const allProjects= await connection.get("project")
