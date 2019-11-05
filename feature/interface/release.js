@@ -3,7 +3,9 @@ const jiraOperation = require(`../jira/release.js`);
 
 exports.run=async(operate, ...args)=>{
     const operationObject = await getReleaseOperationObject();
-    operationObject[operate](...args)
+    if(operationObject){
+        operationObject[operate](...args)
+    }
 }
 
 getReleaseOperationObject = async () => {
@@ -13,7 +15,8 @@ getReleaseOperationObject = async () => {
             return jiraOperation;
             break;
         default:
-            return jiraOperation;
+            console.log("not found your account, please config it first")
+            return null;
     }
 }
 

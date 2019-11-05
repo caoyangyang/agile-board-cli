@@ -4,7 +4,9 @@ const jiraOperation = require(`../jira/issue.js`);
 
 exports.run = async (operate, ...args) => {
     const operationObject = await getOperationObject();
-    operationObject[operate](...args)
+    if(operationObject){
+        operationObject[operate](...args)
+    }
 }
 
 getOperationObject = async () => {
@@ -14,7 +16,8 @@ getOperationObject = async () => {
             return jiraOperation;
             break;
         default:
-            return jiraOperation;
+            console.log("not found your account, please config it first")
+            return null;
     }
 }
 
