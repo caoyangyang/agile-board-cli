@@ -1,8 +1,19 @@
 const path = require('path');
 const jsonfile = require('jsonfile')
 
-exports.getType = async () => {
+const getAccountFunc = async () => {
     const file = path.resolve(__dirname, './account.json');
-    let accountFile = await jsonfile.readFile(file);
-    return accountFile.type.replace(/'/g, "")
+    try {
+        return await jsonfile.readFile(file);
+    } catch (error) {
+        return null
+    }
+
 }
+
+exports.getType = async () => {
+    return getAccountFunc().type
+}
+
+exports.getAccount = getAccountFunc
+

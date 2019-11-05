@@ -1,11 +1,8 @@
-const jsonfile = require('jsonfile');
+const config = require("../config/config.js") ;
 const fetch = require("node-fetch");
-const path = require('path');
-
-const file = path.resolve(__dirname, '../config/account.json');
 
 getHeader = async () => {
-    let accountFile = await jsonfile.readFile(file);
+    let accountFile = await config.getAccount();
     return {
         'Authorization': 'Basic ' + Buffer.from(accountFile.userName + ":" + accountFile.password).toString('base64'),
         'Content-Type': "application/json"
@@ -13,16 +10,16 @@ getHeader = async () => {
 }
 
 exports.get = async (url) => {
-    let accountFile = await jsonfile.readFile(file);
+    let account =  await config.getAccount();
     const headers = await getHeader();
-    return fetch("https://" + accountFile.url + "/rest/api/2/" + url, {method: 'GET', headers})
+    return fetch("https://" + account.url + "/rest/api/2/" + url, {method: 'GET', headers})
         .then(res => res.json())
 };
 
 exports.post = async (url, data) => {
-    let accountFile = await jsonfile.readFile(file);
+    let account =  await config.getAccount();
     const headers = await getHeader();
-    return fetch("https://" + accountFile.url + "/rest/api/2/" + url, {
+    return fetch("https://" + account.url + "/rest/api/2/" + url, {
             method: 'POST',
             headers,
             body: JSON.stringify(data)
@@ -33,9 +30,9 @@ exports.post = async (url, data) => {
 };
 
 exports.internalGet = async (url) => {
-    let accountFile = await jsonfile.readFile(file);
+    let account =  await config.getAccount();
     const headers = await getHeader();
-    return fetch("https://" + accountFile.url + "/rest/internal/2/" + url, {method: 'GET', headers})
+    return fetch("https://" + account.url + "/rest/internal/2/" + url, {method: 'GET', headers})
         .then(res => res.json())
 };
 
