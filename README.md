@@ -13,6 +13,7 @@ npm install agile-board-cli -g
 ```bash
 agile-board-cli init
 ```
+[how to get token](https://github.com/caoyangyang/agile-board-cli/blob/master/GET_API_KEYS.md)
 ### project operation
 
 
