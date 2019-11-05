@@ -11,12 +11,13 @@ const getAccountFunc = async () => {
 }
 
 exports.getType = async () => {
-    return getAccountFunc().type
+    const account = await getAccountFunc();
+    return account.type;
 }
 
 exports.getAccount = getAccountFunc
 
-exports.setAccount=async ({type,url, userName, password}) => {
+exports.setAccount = async ({type, url, userName, password}) => {
     await jsonfile.writeFile(filePath, {type, url, userName, password});
 }
 

@@ -5,7 +5,7 @@ const jiraOperation = require(`../jira/issue.js`);
 exports.run = async (operate, ...args) => {
     const operationObject = await getOperationObject();
     if(operationObject){
-        operationObject[operate](...args)
+      return await operationObject[operate](...args)
     }
 }
 

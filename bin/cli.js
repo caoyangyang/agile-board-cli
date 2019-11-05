@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 const cli = require('cac')();
-const gitLog = require("../common/git-log.js") ;
 const accountOperation = require("../feature/interface/account.js") ;
 const projectOperation = require(`../feature/interface/project.js`) ;
 const releaseOperation = require(`../feature/interface/release.js`) ;
 const issueOperation = require(`../feature/interface/issue.js`) ;
+const commitHook = require(`../hook/commit-hook.js`) ;
+
 const commandGroup= {project:projectOperation,release:releaseOperation,issue:issueOperation}
 
 Object.keys(commandGroup).forEach((commandObject => {
@@ -21,11 +22,9 @@ cli
         accountOperation.run()
     })
 
-
-cli
-    .command('lastCommit', 'show last git commit message')
+cli.command('runCommitHook', 'move card base on commit message and current card status')
     .action(() => {
-        gitLog.showLatestLog()
+        commitHook.run()
     })
 
 cli.help()
