@@ -1,5 +1,5 @@
 const gitLog = require("../common/git-log.js");
-const issueOperation = require(`../feature/interface/issue.js`);
+const issueOperation = require(`./operator`);
 
 const inDevStatus = "In Dev";
 const statusAfterInDev = ["Ready for QA", "In QA", "Ready for uat", "In UAT", "Done"]
