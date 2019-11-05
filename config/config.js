@@ -1,14 +1,13 @@
 const path = require('path');
 const jsonfile = require('jsonfile')
 
+const filePath = path.resolve(__dirname, './account.json');
 const getAccountFunc = async () => {
-    const file = path.resolve(__dirname, './account.json');
     try {
-        return await jsonfile.readFile(file);
+        return await jsonfile.readFile(filePath);
     } catch (error) {
         return null
     }
-
 }
 
 exports.getType = async () => {
@@ -16,4 +15,8 @@ exports.getType = async () => {
 }
 
 exports.getAccount = getAccountFunc
+
+exports.setAccount=async ({type,url, userName, password}) => {
+    await jsonfile.writeFile(filePath, {type, url, userName, password});
+}
 

@@ -1,5 +1,4 @@
-const jsonfile = require('jsonfile')
-const path = require('path');
+const config = require("../../config/config.js") ;
 const prompt = require('prompt');
 
 exports.init = () => {
@@ -8,15 +7,13 @@ exports.init = () => {
         if (err) {
             console.log("prompt error", err);
         } else {
-            await config( `${result.url}`, `${result.userName}`, `${result.password}`);
+            await configAccount( `${result.url}`, `${result.userName}`, `${result.password}`);
         }
     });
 }
 
-const config = async (url, userName, password) => {
-    const filePath = path.resolve(__dirname, '../../config/account.json');
-    const config = {type:"jira", url, userName, password}
-    await jsonfile.writeFile(filePath, config);
+const configAccount = async (url, userName, password) => {
+    await config.setAccount({type:"jira", url, userName, password})
 }
 
 
