@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const cli = require('cac')();
 const accountOperation = require("../operator/interface/account.js") ;
-const projectOperation = require(`./operator`) ;
-const releaseOperation = require(`./operator`) ;
-const issueOperation = require(`./operator`) ;
+const projectOperation = require(`../operator/interface/project.js`) ;
+const releaseOperation = require(`../operator/interface/release.js`) ;
+const issueOperation = require(`../operator/interface/issue.js`) ;
 const commitHook = require(`../hook/commit-hook.js`) ;
 
 const commandGroup= {project:projectOperation,release:releaseOperation,issue:issueOperation}
@@ -24,7 +24,12 @@ cli
 
 cli.command('runCommitHook', 'move card base on commit message and current card status')
     .action(() => {
-        commitHook.run()
+        commitHook.autoMoveToDev()
+    })
+
+cli.command('devDone', 'move card to readyForQA')
+    .action(() => {
+        commitHook.devDone()
     })
 
 cli.help()
