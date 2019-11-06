@@ -1,4 +1,0 @@
-jira
-costa-digital.atlassian.net
-yycao@thoughtworks.com
-VIEtHAlwwwp5PBxo6jnH0FAE
