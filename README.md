@@ -14,11 +14,19 @@ npm install agile-board-cli -g
 agile-board-cli init
 ```
 [how to get token](https://github.com/caoyangyang/agile-board-cli/blob/master/GET_API_KEYS.md)
-### move card to inDev when create first commit for new card
+
+### Move card 
+#### move to inDev 
 ```bash
 agile-board-cli runCommitHook
 ```
-recommend add this to commit hook for git 
+*recommend add this to commit hook for git
+
+#### move to devDone
+```bash
+agile-board-cli devDone
+```
+*recommend run this command after dc
 
 ### project operation
 
