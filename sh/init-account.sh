@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "Start config your account"
 read -p "type(jira/mingle): "  type
 read -p "url: "  url
