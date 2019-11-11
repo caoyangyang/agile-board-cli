@@ -1,6 +1,4 @@
 #!/bin/sh
-source "`dirname $0`/jira/issue.sh"
-
 
 getCardNumberFromCommit(){
  commitMessage=`git log -1 --pretty=format:"%s" && git rev-parse --abbrev-ref HEAD  && git tag --contains HEAD`
@@ -12,13 +10,4 @@ getCardNumberFromCommit(){
   fi
    cardNumber=`echo "$commitMessage" | grep "$REGEX" -o`
   echo $cardNumber
-}
-
-autoMoveDevDone(){
-  cardNumber=`getCardNumberFromCommit`
-#  cardNumber="WEB-1220"
-  currentStatus=`getIssueStatus $cardNumber`
-  if [ "$currentStatus" = "In Dev" ]; then
-    moveIssueTo $cardNumber "Ready For QA"
-  fi
 }
