@@ -8,15 +8,18 @@ request(){
  accountPassword=`head -n 4 account.profile | tail -1`
 
  apiToken=`getAuthString $accountName $accountPassword`
- response=`curl -s --request GET \
+ if [ ! $2 ]; then
+   requestMethod="GET"
+ else
+   requestMethod=$2
+ fi
+ response=`curl -s --request $requestMethod \
                --url "https://$url/rest/api/2/$1" \
                --header "Authorization: $apiToken"`
-  echo $response
+ echo $response
 }
 
 getAuthString(){
   encodeStr=`echo "$1:$2\c" | base64 `
   echo "Basic $encodeStr"
 }
-
-request "project"

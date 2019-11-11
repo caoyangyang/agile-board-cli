@@ -1,5 +1,5 @@
 #!/bin/sh
-source ./jira/issue.sh
+source "`dirname $0`/jira/issue.sh"
 
 
 getCardNumberFromCommit(){
@@ -16,10 +16,9 @@ getCardNumberFromCommit(){
 
 autoMoveDevDone(){
   cardNumber=`getCardNumberFromCommit`
-  currentStatus=`getIssueStatus`
-  if [[ $currentStatus == "In Dev"]]; then
+#  cardNumber="WEB-1220"
+  currentStatus=`getIssueStatus $cardNumber`
+  if [ "$currentStatus" = "In Dev" ]; then
     moveIssueTo $cardNumber "Ready For QA"
   fi
 }
-
-autoMoveDevDone
