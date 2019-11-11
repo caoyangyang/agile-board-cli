@@ -3,7 +3,7 @@ source "`dirname $0`/jira/issue.sh"
 source "`dirname $0`/common.sh"
 
 
-autoMoveDevDone(){
+moveDevDone(){
 #  cardNumber=`getCardNumberFromCommit`
   cardNumber="WEB-1220"
   currentStatus=`getIssueStatus $cardNumber`
@@ -13,4 +13,4 @@ autoMoveDevDone(){
   fi
 }
 
-autoMoveDevDone
+moveDevDone
