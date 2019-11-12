@@ -3,13 +3,15 @@ source "`dirname $0`/jira/request.sh"
 
 
 isStatusBeforeInDev(){
-  statusIndex=`findIndex "$1"`
+  inDevStatus="In Dev"
+  currentStatus=`echo "$1" | tr -d '"'`
+  statusIndex=`findIndex "$currentStatus"`
+  inDevStatusIndex=`findIndex "$inDevStatus"`
 
-  inDevStatusIndex=`findIndex "In Dev"`
   if [ $statusIndex -lt $inDevStatusIndex ]; then
-    echo true
+    echo 1
    else
-    echo false
+    echo 0
    fi
 }
 
@@ -40,7 +42,7 @@ findInDevTransaction(){
 
 
 findIndex(){
-my_array=("To Do","Business Analysis","Blocked","In Progress","Ready For Dev","In Dev","Ready for QA","In QA","Ready for uat","In UAT","Done")
+my_array=("To Do" "Business Analysis" "Blocked" "In Progress" "Ready For Dev" "In Dev" "Ready for QA" "In QA" "Ready for uat" "In UAT" "Done")
 value=$1
 
 for i in "${!my_array[@]}"; do

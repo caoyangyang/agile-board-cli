@@ -9,7 +9,7 @@ autoMoveToInDev(){
   currentStatus=`getIssueStatus $cardNumber`
   isBeforeInDev=`isStatusBeforeInDev "$currentStatus"`
   echo $isBeforeInDev
-  if [ "$currentStatus"!="In Dev" ] && [ $isBeforeInDev ]; then
+  if [[ ("$currentStatus"!="In Dev") &&  ($isBeforeInDev -eq 1) ]]; then
     res=`moveIssueToInDev $cardNumber`
   fi
 }
