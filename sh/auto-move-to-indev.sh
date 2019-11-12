@@ -4,8 +4,7 @@ source "`dirname $0`/common.sh"
 
 
 autoMoveToInDev(){
-#  cardNumber=`getCardNumberFromCommit`
-  cardNumber="WEB-1220"
+  cardNumber=`getCardNumberFromCommit`
   currentStatus=`getIssueStatus $cardNumber`
   isBeforeInDev=`isStatusBeforeInDev "$currentStatus"`
   echo $isBeforeInDev

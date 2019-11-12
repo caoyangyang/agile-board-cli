@@ -4,8 +4,7 @@ source "`dirname $0`/common.sh"
 
 
 moveDevDone(){
-#  cardNumber=`getCardNumberFromCommit`
-  cardNumber="WEB-1220"
+  cardNumber=`getCardNumberFromCommit`
   currentStatus=`getIssueStatus $cardNumber`
   if [ "$currentStatus"="In Dev" ]; then
     res=`moveIssueToDevDone $cardNumber`
