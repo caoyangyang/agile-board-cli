@@ -1,10 +1,16 @@
 #!/bin/sh
+source ~/.bash_profile
+
+BASEDIR=$(dirname "$0")
+jsonFile="$BASEDIR/jira/account.json"
+boardType=`jq '.type' $jsonFile`
+url=`jq '.url' $jsonFile`
+accountName=`jq '.name' $jsonFile`
+accountPassword=`jq '.password' $jsonFile`
+
+
 get(){
- boardType=$(head -n 1 account.profile | tail -1)
  #need ready different config by board type
- url=`head -n 2 account.profile | tail -1`
- accountName=`head -n 3 account.profile | tail -1`
- accountPassword=`head -n 4 account.profile | tail -1`
 
  apiToken=`getAuthString $accountName $accountPassword`
 
@@ -15,12 +21,6 @@ get(){
 }
 
 post(){
- boardType=$(head -n 1 account.profile | tail -1)
- #need ready different config by board type
- url=`head -n 2 account.profile | tail -1`
- accountName=`head -n 3 account.profile | tail -1`
- accountPassword=`head -n 4 account.profile | tail -1`
-
  apiToken=`getAuthString $accountName $accountPassword`
  response=`curl -s -w "%{http_code}"  --request "POST" \
                --url "https://$url/rest/api/2/$1" \

@@ -1,7 +1,6 @@
 #!/bin/sh
 source "`dirname $0`/jira/request.sh"
-
-
+source ~/.bash_profile
 isStatusBeforeInDev(){
   inDevStatus="In Dev"
   currentStatus=`echo "$1" | tr -d '"'`
@@ -16,7 +15,7 @@ isStatusBeforeInDev(){
 }
 
 getIssueStatus(){
-  get "issue/$1"|`dirname $0`/jq-osx-amd64  '.fields.status.name'
+  get "issue/$1"|jq '.fields.status.name'
 }
 
 
@@ -33,11 +32,11 @@ moveIssueToDevDone(){
 }
 
 findReadyForQaTransaction(){
-  get "issue/$1/transitions"|`dirname $0`/jq-osx-amd64 ".transitions|map(select(.name ==\"Ready for QA\"))[0]"
+  get "issue/$1/transitions"|jq ".transitions|map(select(.name ==\"Ready for QA\"))[0]"
 }
 
 findInDevTransaction(){
-  get "issue/$1/transitions"|`dirname $0`/jq-osx-amd64 ".transitions|map(select(.name ==\"In Dev\"))[0]"
+  get "issue/$1/transitions"|jq ".transitions|map(select(.name ==\"In Dev\"))[0]"
 }
 
 
