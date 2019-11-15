@@ -5,7 +5,7 @@ BASEDIR=$(dirname "$0")
 statusJsonFile="$BASEDIR/jira/status.json"
 
 getStatusSequence(){
-  echo `jq '.statusSequence[]' $statusJsonFile`
+ jq -r '.statusSequence[]' $statusJsonFile
 }
 
 getInDevStatus(){

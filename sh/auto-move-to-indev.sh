@@ -12,8 +12,9 @@ autoMoveToInDev(){
   statusIndex=`findIndex "$currentStatus"`
   inDevStatusIndex=`findIndex "$inDevStatus"`
 
-  if [[ ("$currentStatus"!="$inDevStatus")  ]]; then
+  if [[ ($statusIndex -lt $inDevStatusIndex) ]]; then
     res=`moveIssueToInDev $cardNumber`
+    echo "auto move card $cardNumber to in dev"
   fi
 }
 

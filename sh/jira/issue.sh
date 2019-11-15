@@ -30,14 +30,12 @@ findInDevTransaction(){
 }
 
 
-findIndex(){
-  #my_array=("To Do" "Business Analysis" "Blocked" "In Progress" "Ready For Dev" "In Dev" "Ready for QA" "In QA" "Ready for uat" "In UAT" "Done")
-  statusString=`getStatusSequence`
-  value=$1
-  for i in "${!my_array[@]}"; do
-     echo $i ${my_array[$i]}
-     if [[ "${my_array[$i]}" = "${value}" ]]; then
-       echo "${i}";
-     fi
-  done
+findIndex() {
+  statusList=`getStatusSequence`
+  stringIndex "$statusList" "$1"
+}
+
+stringIndex() {
+  x="${1%%$2*}"
+  [[ "$x" = "$1" ]] && echo -1 || echo "${#x}"
 }
