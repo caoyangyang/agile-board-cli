@@ -1,0 +1,17 @@
+{
+  "statusSequence":[
+    "To Do",
+    "Business Analysis",
+    "Blocked",
+    "In Progress",
+    "Ready For Dev",
+    "In Dev",
+    "Ready for QA",
+    "In QA",
+    "Ready for uat",
+    "In UAT",
+    "Done"
+  ],
+  "inDev":"In Dev",
+  "devDone":"Ready for QA"
+}

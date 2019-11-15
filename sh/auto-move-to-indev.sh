@@ -6,10 +6,13 @@ source "`dirname $0`/common.sh"
 autoMoveToInDev(){
   cardNumber=`getCardNumberFromCommit`
   currentStatus=`getIssueStatus $cardNumber`
-  isBeforeInDev=`isStatusBeforeInDev "$currentStatus"`
-  echo $isBeforeInDev
 
-  if [[ ("$currentStatus"!="In Dev") &&  ($isBeforeInDev -eq 1) ]]; then
+  inDevStatus=`getInDevStatus`
+
+  statusIndex=`findIndex "$currentStatus"`
+  inDevStatusIndex=`findIndex "$inDevStatus"`
+
+  if [[ ("$currentStatus"!="$inDevStatus")  ]]; then
     res=`moveIssueToInDev $cardNumber`
   fi
 }

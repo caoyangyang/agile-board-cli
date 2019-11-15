@@ -3,17 +3,16 @@ source ~/.bash_profile
 
 BASEDIR=$(dirname "$0")
 jsonFile="$BASEDIR/jira/account.json"
-boardType=`jq '.type' $jsonFile`
-url=`jq '.url' $jsonFile`
-accountName=`jq '.name' $jsonFile`
-accountPassword=`jq '.password' $jsonFile`
+boardType=`jq '.type' $jsonFile |sed 's/"//g'`
+url=`jq '.url' $jsonFile|sed 's/"//g'`
+accountName=`jq '.name' $jsonFile|sed 's/"//g'`
+accountPassword=`jq '.password' $jsonFile|sed 's/"//g'`
 
 
 get(){
  #need ready different config by board type
 
  apiToken=`getAuthString $accountName $accountPassword`
-
  response=`curl -s --request "GET" \
                --url "https://$url/rest/api/2/$1" \
                --header "Authorization: $apiToken"`

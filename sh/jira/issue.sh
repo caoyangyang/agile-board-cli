@@ -1,21 +1,9 @@
 #!/bin/sh
 source "`dirname $0`/jira/request.sh"
-source ~/.bash_profile
-isStatusBeforeInDev(){
-  inDevStatus="In Dev"
-  currentStatus=`echo "$1" | tr -d '"'`
-  statusIndex=`findIndex "$currentStatus"`
-  inDevStatusIndex=`findIndex "$inDevStatus"`
-
-  if [ $statusIndex -lt $inDevStatusIndex ]; then
-    echo 1
-   else
-    echo 0
-   fi
-}
+source "`dirname $0`/jira/status.sh"
 
 getIssueStatus(){
-  get "issue/$1"|jq '.fields.status.name'
+  get "issue/$1"|jq '.fields.status.name'|sed 's/"//g'
 }
 
 
@@ -32,21 +20,24 @@ moveIssueToDevDone(){
 }
 
 findReadyForQaTransaction(){
-  get "issue/$1/transitions"|jq ".transitions|map(select(.name ==\"Ready for QA\"))[0]"
+  devDoneStatus=`getDevDoneStatus`
+  get "issue/$1/transitions"|jq ".transitions|map(select(.name ==\"$devDoneStatus\"))[0]"
 }
 
 findInDevTransaction(){
-  get "issue/$1/transitions"|jq ".transitions|map(select(.name ==\"In Dev\"))[0]"
+  inDevStatus=`getInDevStatus`
+  get "issue/$1/transitions"|jq ".transitions|map(select(.name ==\"$inDevStatus\"))[0]"
 }
 
 
 findIndex(){
-my_array=("To Do" "Business Analysis" "Blocked" "In Progress" "Ready For Dev" "In Dev" "Ready for QA" "In QA" "Ready for uat" "In UAT" "Done")
-value=$1
-
-for i in "${!my_array[@]}"; do
-   if [[ "${my_array[$i]}" = "${value}" ]]; then
+  #my_array=("To Do" "Business Analysis" "Blocked" "In Progress" "Ready For Dev" "In Dev" "Ready for QA" "In QA" "Ready for uat" "In UAT" "Done")
+  statusString=`getStatusSequence`
+  value=$1
+  for i in "${!my_array[@]}"; do
+     echo $i ${my_array[$i]}
+     if [[ "${my_array[$i]}" = "${value}" ]]; then
        echo "${i}";
-   fi
-done
+     fi
+  done
 }
