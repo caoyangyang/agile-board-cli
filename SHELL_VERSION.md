@@ -7,22 +7,27 @@ download the codebase and get the sh directory path
 ## How to use
 ### config account info
 ```
- sh init-account.sh
+ sh cli.sh init
 ```
 
 ### Move card 
 #### move to inDev 
 ```
-sh auto-move-to-indev.sh
+ sh cli.sh inDev
 ```
 *recommend add this to commit hook for git
 ```
-sh add-commit-msg-hook.sh
+ sh cli.sh addHook
 ```
 
 #### move to devDone
-```bash
-sh dev-done.sh
+```
+ sh cli.sh devDone
+```
+
+### config status 
+```
+ sh cli.sh configStatus
 ```
 
 
